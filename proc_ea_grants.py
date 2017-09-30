@@ -37,27 +37,32 @@ with open("ea-grants.tsv", newline='') as f:
     reader = csv.DictReader(f, delimiter="\t")
     first = True
     for row in reader:
+        amount_original = float(row['Amount'].replace('£', '').replace(',', ''))
+        # Conversion rate from
+        # https://www.bloomberg.com/quote/GBPUSD:CUR and archived at
+        # http://archive.is/GFfq6
+        amount = round(amount_original * 1.3398, 2)
+        notes = row['Project'] + " See http://effective-altruism.com/ea/1fc/effective_altruism_grants_project_update/ for more context about the grant program."
         print("    " + ("" if first else ",") + "(" + ",".join([
-            mysql_quote("Centre for Effective Altruism"),
+            mysql_quote("Effective Altruism Grants"),
             mysql_quote(row['Recipient']),
+            str(amount),
             "NULL",
-            "NULL",
-            "NULL",  # donation_date
-            "NULL",  # donation_date_precision
-            "NULL",  # donation_date_basis
+            mysql_quote("2017-09-29"),  # donation_date
+            mysql_quote("day"),  # donation_date_precision
+            mysql_quote("date of donation announcement"),  # donation_date_basis
             mysql_quote(row['Cause']),
-            "NULL",  # url
-            mysql_quote(row['Project']),  # notes
+            mysql_quote("https://docs.google.com/spreadsheets/d/1iBy--zMyIiTgybYRUQZIm11WKGQZcixaCmIaysRmGvk"),  # url
+            mysql_quote(notes),  # notes
             "NULL",  # payment_modality
             "NULL",  # match_eligible
             "NULL",  # goal_amount
             "NULL",  # influencer
             "NULL",  # employer_match
             "NULL",  # matching_employer
-            row['Amount'].replace('£', '') \
-                         .replace(',', ''),  # amount_original_currency
+            str(amount_original),  # amount_original_currency
             mysql_quote("GBP"),  # original_currency
-            "NULL",  # currency_conversion_date
+            mysql_quote("2017-09-29"),  # currency_conversion_date
             "NULL",  # currency_conversion_basis
         ]) + ")")
         first = False
