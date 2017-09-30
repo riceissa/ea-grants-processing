@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # License: CC0
 
+# To get the data, go to
+# https://docs.google.com/spreadsheets/d/1iBy--zMyIiTgybYRUQZIm11WKGQZcixaCmIaysRmGvk/edit?usp=sharing
+# and export as TSV, saving the file as "ea-grants.tsv".
+
 import csv
 import logging
 
