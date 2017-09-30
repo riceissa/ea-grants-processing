@@ -3,7 +3,8 @@
 
 # To get the data, go to
 # https://docs.google.com/spreadsheets/d/1iBy--zMyIiTgybYRUQZIm11WKGQZcixaCmIaysRmGvk/edit?usp=sharing
-# and export as TSV, saving the file as "ea-grants.tsv".
+# and export as TSV, saving the file as "ea-grants.tsv". You will want to
+# remove the last line, which contains the total amount.
 
 import csv
 import logging
