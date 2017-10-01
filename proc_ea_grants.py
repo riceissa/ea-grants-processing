@@ -63,7 +63,7 @@ with open("ea-grants.tsv", newline='') as f:
             str(amount_original),  # amount_original_currency
             mysql_quote("GBP"),  # original_currency
             mysql_quote("2017-09-29"),  # currency_conversion_date
-            "NULL",  # currency_conversion_basis
+            mysql_quote("Bloomberg"),  # currency_conversion_basis
         ]) + ")")
         first = False
 print(";")
