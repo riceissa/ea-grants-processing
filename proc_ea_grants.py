@@ -38,7 +38,7 @@ def mysql_quote(x):
     return "'{}'".format(x)
 
 
-print("""insert into donations(donor, donee, amount, fraction, donation_date,
+print("""insert into donations(donor, donee, donation_earmark, amount, fraction, donation_date,
     donation_date_precision, donation_date_basis, cause_area, url, notes,
     payment_modality, match_eligible, goal_amount, influencer, employer_match,
     matching_employer, amount_original_currency, original_currency,
@@ -54,9 +54,15 @@ with open("ea-grants.tsv", newline='') as f:
         # http://archive.is/GFfq6
         amount = round(amount_original * 1.3398, 2)
         notes = row['Project'] + " See http://effective-altruism.com/ea/1fc/effective_altruism_grants_project_update/ for more context about the grant program."
+        donee = row['Recipient'])
+        earmark = "NULL"
+        if donee in DONEE_RENAME:
+            earmark = mysql_quote(donee)
+            donee = DONEE_RENAME[donee]
         print("    " + ("" if first else ",") + "(" + ",".join([
             mysql_quote("Effective Altruism Grants"),
-            mysql_quote(row['Recipient']),
+            mysql_quote(donee),
+            earmark,
             str(amount),
             "NULL",
             mysql_quote("2017-09-29"),  # donation_date
