@@ -54,7 +54,7 @@ with open("ea-grants.tsv", newline='') as f:
         # http://archive.is/GFfq6
         amount = round(amount_original * 1.3398, 2)
         notes = row['Project'] + " See http://effective-altruism.com/ea/1fc/effective_altruism_grants_project_update/ for more context about the grant program."
-        donee = row['Recipient'])
+        donee = row['Recipient']
         earmark = "NULL"
         if donee in DONEE_RENAME:
             earmark = mysql_quote(donee)
