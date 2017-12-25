@@ -12,6 +12,17 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
+DONEE_RENAME = {
+    "Katja Grace" : "AI Impacts",
+    "Kelly Witwicki" : "Sentience Institute",
+    "David Denkenberger" : "Alliance to Feed the Earth in Disasters",
+    "Finan Adamson" : "Effective Altruism Seattle",
+    "Gregory Lewis" : "Future of Humanity Institute",
+    "Matthew Gentzel" : "Global Catastrophic Risks Institute",
+    "Ben Pace" : "LessWrong 2.0",
+    "Oliver Habryka" : "LessWrong 2.0",
+    "Zac Kenton" : "Montreal Institute for Learning Algorithms"
+}
 
 def mysql_quote(x):
     '''
