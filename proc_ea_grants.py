@@ -18,7 +18,7 @@ DONEE_RENAME = {
     "David Denkenberger" : "Alliance to Feed the Earth in Disasters",
     "Finan Adamson" : "Effective Altruism Seattle",
     "Gregory Lewis" : "Future of Humanity Institute",
-    "Matthew Gentzel" : "Global Catastrophic Risks Institute",
+    "Matthew Gentzel" : "Global Catastrophic Risk Institute",
     "Ben Pace" : "LessWrong 2.0",
     "Oliver Habryka" : "LessWrong 2.0",
     "Zac Kenton" : "Montreal Institute for Learning Algorithms"
