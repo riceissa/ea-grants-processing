@@ -24,6 +24,12 @@ DONEE_RENAME = {
     "Zac Kenton" : "Montreal Institute for Learning Algorithms"
 }
 
+CAUSE_AREA_RENAME = {
+    "Global Health and Development" : "Global health",
+    "Animal Welfare" : "Animal welfare",
+    "Effective Altruism Community" : "Effective altruism/movement growth",
+    "Long-Term Future" : "
+}
 def mysql_quote(x):
     '''
     Quote the string x using MySQL quoting rules. If x is the empty string,
