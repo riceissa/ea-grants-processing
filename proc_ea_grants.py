@@ -28,7 +28,13 @@ CAUSE_AREA_RENAME = {
     "Global Health and Development" : "Global health",
     "Animal Welfare" : "Animal welfare",
     "Effective Altruism Community" : "Effective altruism/movement growth",
-    "Long-Term Future" : "
+    "Long-Term Future" : "Global catastrophic risks"
+}
+
+DONEE_TO_CAUSE_AREA_MAP = {
+    "LessWrong 2.0" : "Rationality improvement",
+    "AI Impacts" : "AI safety",
+    "Montreal Institute for Learning Algorithms" : "AI safety"
 }
 def mysql_quote(x):
     '''
@@ -63,18 +69,23 @@ with open("ea-grants.tsv", newline='') as f:
         donee = row['Recipient']
         earmark = "NULL"
         if donee in DONEE_RENAME:
-            earmark = mysql_quote(donee)
+            earmark = donee
             donee = DONEE_RENAME[donee]
+        cause = row['Cause']
+        if donee in DONEE_TO_CAUSE_AREA_MAP:
+            cause = DONEE_TO_CAUSE_AREA_MAP[donee]
+        elif cause in CAUSE_AREA_RENAME:
+            cause = CAUSE_AREA_RENAME[cause]
         print("    " + ("" if first else ",") + "(" + ",".join([
             mysql_quote("Effective Altruism Grants"),
             mysql_quote(donee),
-            earmark,
+            mysql_quote(earmark),
             str(amount),
             "NULL",
             mysql_quote("2017-09-29"),  # donation_date
             mysql_quote("day"),  # donation_date_precision
             mysql_quote("date of donation announcement"),  # donation_date_basis
-            mysql_quote(row['Cause']),
+            mysql_quote(cause),
             mysql_quote("https://docs.google.com/spreadsheets/d/1iBy--zMyIiTgybYRUQZIm11WKGQZcixaCmIaysRmGvk"),  # url
             mysql_quote(notes),  # notes
             "NULL",  # payment_modality
